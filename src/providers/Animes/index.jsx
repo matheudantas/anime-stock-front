@@ -27,6 +27,7 @@ export const AnimeProvider = ({ children }) => {
       .then((res) => {
         setAnimes(res.data);
         setLoad(true);
+        setError(false);
       })
       .catch((err) => {
         setError(true);
