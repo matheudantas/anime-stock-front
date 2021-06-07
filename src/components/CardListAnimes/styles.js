@@ -7,6 +7,13 @@ export const Container = styled.div`
   @media (min-width: 500px) {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (min-width: 700px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 `;
 
