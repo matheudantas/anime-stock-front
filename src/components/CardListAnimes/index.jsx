@@ -1,6 +1,6 @@
 import CardAnime from "../CardAnime";
 import { useAnime } from "../../providers/Animes";
-import { Container } from "./styles";
+import { Container, AnimeEmptyMessage } from "./styles";
 import LoadingCircular from "../LoadingCircular";
 
 const CardListAnimes = () => {
@@ -8,19 +8,28 @@ const CardListAnimes = () => {
 
   console.log(animes);
   return (
-    <Container>
-      {!load ? (
-        <LoadingCircular />
-      ) : (
-        animes?.map((i) => (
-          <CardAnime
-            anime={i.anime}
-            date={i.released_date}
-            seasons={i.seasons}
-          />
-        ))
+    <>
+      {!animes && (
+        <AnimeEmptyMessage>
+          Nenhum anime encontrado, adicione o seu primeiro!
+        </AnimeEmptyMessage>
       )}
-    </Container>
+      <Container>
+        {!load ? (
+          <LoadingCircular />
+        ) : (
+          animes?.map((i) => (
+            <CardAnime
+              anime={i.anime}
+              date={i.released_date}
+              seasons={i.seasons}
+              key={i.id}
+              id={i.id}
+            />
+          ))
+        )}
+      </Container>
+    </>
   );
 };
 

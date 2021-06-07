@@ -14,20 +14,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Form = ({ patch, vertical }) => {
+const Form = ({ patch, vertical, id }) => {
   const classes = useStyles();
   const { control, handleSubmit } = useForm();
-  const { postAnimes, setLoad } = useAnime();
+  const { postAnimes, setLoad, patchAnimes } = useAnime();
 
   return (
     <FormStyled
       vertical={vertical}
-      // criar CONTEXTO para enviar dado à API
       onSubmit={handleSubmit((data) => {
-        data["released_date"] = data["released_date"].split("-").join("/");
-        postAnimes(data);
+        if (!patch) {
+          data["released_date"] = data["released_date"].split("-").join("/");
+          postAnimes(data);
+          setLoad(false);
+        }
+        patchAnimes(id, data);
         setLoad(false);
-        console.log(data);
       })}
       className={classes.root}
       noValidate
