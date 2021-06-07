@@ -6,7 +6,6 @@ import LoadingCircular from "../LoadingCircular";
 const CardListAnimes = () => {
   const { animes, load } = useAnime();
 
-  console.log(animes);
   return (
     <>
       {!animes && (

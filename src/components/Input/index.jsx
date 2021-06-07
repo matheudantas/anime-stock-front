@@ -11,8 +11,7 @@ const Input = ({
 }) => {
   const {
     field: { ref, ...inputProps },
-    fieldState: { invalid, isTouched, isDirty, error },
-    formState: { touchedFields, dirtyFields },
+    fieldState: { invalid },
   } = useController({
     name,
     control,
@@ -20,23 +19,17 @@ const Input = ({
     defaultValue: "",
   });
 
-  //   console.log(dirtyFields);
-  //   console.log(isDirty);
-  // console.log(invalid, "INVALID");
-
   return (
     <div>
       <TextField
         error={invalid}
         id="outlined-error-helper-text"
         label={invalid ? "Error" : labelMessage}
-        // defaultValue="Hello World"
         helperText={invalid ? "entrada incorreta" : ""}
         variant="outlined"
         inputRef={ref}
         type={type}
         InputLabelProps={InputLabelProps}
-        // type="number"
         {...inputProps}
       />
     </div>
